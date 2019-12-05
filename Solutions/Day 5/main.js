@@ -24,14 +24,13 @@ function runIntcode() {
 
     if (programOps[opcode]) {
       for(let i = 0; i < programOps[opcode].inputs; i++ ) {
-      programOps[opcode].inputs.forEach((indexOffset, i) => {
         const inputIndex = currentIndex + i + 1;
         if (modePositions[i] == 0) {
           inputs.push(opcodes[opcodes[inputIndex]]);
         } else if (modePositions[i] == 1) {
           inputs.push(opcodes[inputIndex]);
         }
-      });
+      }
     }
 
     const output = opcodes[currentIndex + 3];
@@ -42,7 +41,7 @@ function runIntcode() {
     } else if (opcode == 02) {
       if (inputs.length) opcodes[output] = inputs.reduce((accumulator, currentVal) => accumulator * currentVal);
     } else if (opcode == 03) {
-      opcodes[opcodes[currentIndex + 1]] = 5; // make input LOL TRICKED YA 
+      opcodes[opcodes[currentIndex + 1]] = 5; // make input LOL
     } else if (opcode == 04) {
       console.log(inputs[0])
     } else if (opcode == 05 && inputs[0] != 0) {
